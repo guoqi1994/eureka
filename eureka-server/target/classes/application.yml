@@ -4,25 +4,36 @@ spring:
   application:
     name: eureka-server
 
-#\u5355\u673A
+#安全认证
+#  security:
+#    user:
+#      name: root
+#      password: 123456
+#单机模式
 #eureka:
+#    enable-self-preservation: false # true:开启自我保护模式 false 关闭自我保护模式
+#    eviction-interval-timer-in-ms: 60000 #清理间隔(单位:毫秒,默认 60*1000)
 #  instance:
-#    hostname: localhost #\u4E3B\u673A\u540D
+#    hostname: localhost #主机名,不配置的时候根据操作系统的主机名来获取
 #  client:
-#    # \u662F\u5426\u5C06\u81EA\u5DF1\u6CE8\u518C\u5230\u6CE8\u518C\u4E2D\u5FC3,\u9ED8\u8BA4\u4E3Atrue
-#    register-with-eureka: false
-#    # \u662F\u5426\u4ECE\u6CE8\u518C\u4E2D\u5FC3\u83B7\u53D6\u670D\u52A1\u6CE8\u518C\u4FE1\u606F \u9ED8\u8BA4\u4E3Atrue
-#    fetch-registry: false
-#    service-url:
-#      #\u6CE8\u518C\u4E2D\u5FC3\u5BF9\u5916\u66B4\u9732\u7684\u6CE8\u518C\u5730\u5740
+#    register-with-eureka: false #是否将自己注册到注册中心 默认为true
+#    fetch-registry: false       #是否从注册中心获取服务注册信息 默认为true
+#    service-url:                #注册中心对外暴露的注册地址
 #      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 
 eureka:
+  server:
+    enable-self-preservation: false # true:开启自我保护模式 false 关闭自我保护模式
+    eviction-interval-timer-in-ms: 60000 #清理间隔(单位:毫秒,默认 60*1000)
   instance:
-    hostname: eureka01 #\u4E3B\u673A\u540D
-    prefer-ip-address: true #\u662F\u5426\u4F7F\u7528ip\u5730\u5740\u6CE8\u518C
+    hostname: eureka01 #主机名
+    prefer-ip-address: true #是否使用ip地址注册
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
   client:
-    #\u8BBE\u7F6E\u670D\u52A1\u6CE8\u518C\u4E2D\u5FC3\u5730\u5740,\u6307\u5411\u53E6\u4E00\u4E2A\u6CE8\u518C\u4E2D\u5FC3
+    #设置服务注册中心地址,指向另一个注册中心
     service-url:
       defaultZone: http://localhost:8762/eureka/
+#      defaultZone: http://root:123456@localhost:8761/eureka/
+
+
+
