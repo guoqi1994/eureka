@@ -3,6 +3,7 @@ server:
 spring:
   application:
     name: eureka-server
+
 #安全认证
   security:
     user:
