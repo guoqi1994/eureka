@@ -1,0 +1,21 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: service-consumer
+
+#相互调用,需要注册
+#eureka:
+#  instance:
+#    prefer-ip-address: true #是否使用ip地址注册
+#    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+#  client:
+#    #设置服务注册中心地址,指向另一个注册中心
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+eureka:
+  client:
+    register-with-eureka: false #是否将自己注册到注册中心
+    registry-fetch-interval-seconds: 10 #表示Eureka Client间隔多久到服务器拉去注册中心,默认为30s
+    service-url:  #设置服务注册中心地址
+        defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
