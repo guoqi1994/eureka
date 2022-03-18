@@ -20,9 +20,13 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @description 
+ * @description :消费的三种方式:
+ *               1.使用DiscoveryClient
+ *               2.使用LoadBalancerClient
+ *               3.使用@LoadBalanced注解
  * @author Guoqi
  * @date 2022/03/17 10:49
+ *
  **/
 @Service
 public class OrderServiceImpl implements OrderService {
